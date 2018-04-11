@@ -6,12 +6,17 @@ host=socket.gethostname()
 port=8080
 s.bind((host,port))
 s.listen(5)
-while True:
- (client,(ip,port))=s.accept()
- addr=(ip,port)
- print ("got connection fron:", addr)
-   
- message=input('->')
- client.send(message.encode('utf-8'))
- print(client.recv(1024))
- client.close
+(client,(ip,port))=s.accept()
+
+while 1:
+      addr=(ip,port)
+      print ("got connection fron:", addr)
+      print(" Enter b for exit")
+      message=input('->')
+      if message=="x":
+            exit()
+      else:
+          print(message.encode())
+          client.send(message.encode('utf-8'))
+          print("message has been sent")
+          print(client.recv(1024))
